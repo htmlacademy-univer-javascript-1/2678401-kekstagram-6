@@ -40,3 +40,25 @@ function extractNumbers(text) {
   const number = parseInt(result, 10);
   return Number.isNaN(number) ? NaN : number;
 }
+
+const isMeetingWithinWorkDay = function (workStart, workEnd, meetingStart, meetingDuration) {
+
+  const parseTime = (timeStr) => {
+    const [hours, minutes] = timeStr.split(':').map(Number);
+    return hours * 60 + minutes;
+  };
+
+  const workStartMinutes = parseTime(workStart);
+  const workEndMinutes = parseTime(workEnd);
+  const meetingStartMinutes = parseTime(meetingStart);
+
+  // Вычисляем время окончания встречи
+  const meetingEndMinutes = meetingStartMinutes + meetingDuration;
+
+  // Проверяем, что встреча начинается не раньше начала рабочего дня
+  // и заканчивается не позже конца рабочего дня
+  return (
+    meetingStartMinutes >= workStartMinutes &&
+    meetingEndMinutes <= workEndMinutes
+  );
+}
