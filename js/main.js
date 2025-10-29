@@ -1,19 +1,5 @@
-const nameList = [
-  'Артем', 'Мария', 'Иван', 'Ольга', 'Дмитрий',
-  'Екатерина', 'Алексей', 'Наталья', 'Сергей', 'Анна'
-];
-
-const messageList = [
-  'Всё отлично!',
-  'В целом всё неплохо. Но не всё.',
-  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-];
-
-const countPhotos = 25;
-const countComments = 1000000;
+import {nameList, messageList} from './data.js';
+import {generateCommentId, findRandomInteger, countComments, countPhotos} from "./util.js";
 
 /**
  * Функция для генерации массива фотографий
@@ -74,42 +60,3 @@ const generateComment = () => {
     ).join(' '),
   };
 }
-
-/**
- * Функция для генерации случайного числа в заданном диапазоне
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-let findRandomInteger = function (min, max) {
-  const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
-  const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-
-  return Math.floor(result);
-}
-
-/**
- * Функция для генерации случайного числа в заданном диапазоне без повторений
- * @param {number} min
- * @param {number} max
- * @returns {number}
- */
-let createRandomIdFromRangeGenerator = function (min, max) {
-  const previousValues = [];
-
-  return function () {
-    let currentValue = findRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      console.error('Перебраны все числа из диапазона от ' + min + ' до ' + max);
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = findRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
-}
-
-const generateCommentId = createRandomIdFromRangeGenerator(1, countComments);
