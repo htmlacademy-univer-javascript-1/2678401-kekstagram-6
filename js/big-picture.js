@@ -9,7 +9,9 @@ const renderMainElements = function (bigPicture, pictureData) {
   const likesCount = bigPicture.querySelector('.likes-count');
   likesCount.textContent = pictureData.likes;
 
-  renderComments(bigPicture, pictureData.comments);
+  if (pictureData.comments.length > 0) {
+    renderComments(bigPicture, pictureData.comments);
+  }
 
   const description = bigPicture.querySelector('.social__caption');
   description.textContent = pictureData.description;
