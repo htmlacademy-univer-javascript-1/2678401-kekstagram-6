@@ -1,5 +1,5 @@
-const countPhotos = 25;
-const countComments = 1000000;
+export const countPhotos = 25;
+export const countComments = 1000000;
 
 /**
  * Функция для генерации случайного числа в заданном диапазоне
@@ -7,7 +7,7 @@ const countComments = 1000000;
  * @param {number} max
  * @returns {number}
  */
-const findRandomInteger = function (min, max) {
+export const findRandomInteger = function (min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
   const result = Math.random() * (upper - lower + 1) + lower;
@@ -38,6 +38,4 @@ const createRandomIdFromRangeGenerator = function (min, max) {
   };
 };
 
-const generateCommentId = createRandomIdFromRangeGenerator(1, countComments);
-
-export {generateCommentId, findRandomInteger, countPhotos, countComments};
+export const generateCommentId = createRandomIdFromRangeGenerator(1, countComments);
