@@ -3,10 +3,12 @@ import {generatePhotoList} from './main.js';
 const renderPictures = function (picturesData) {
 
   const picturesContainer = document.querySelector('.pictures');
-  const pictureTemplate = document.querySelector('#picture-template');
+  const pictureTemplate = document.querySelector('#picture')
+    .content
+    .querySelector('.picture');
 
   // Создаём DocumentFragment для оптимизации вставки
-  const fragment = new DocumentFragment();
+  const fragment = document.createDocumentFragment();
 
   picturesData.forEach((picture) => {
     // Клонируем шаблон с дочерними элементами
@@ -20,13 +22,13 @@ const renderPictures = function (picturesData) {
     likesElement.textContent = picture.likes;
 
     const commentsElement = pictureElement.querySelector('.picture__comments');
-    commentsElement.textContent = picture.comments;
+    commentsElement.textContent = picture.comments.length;
 
     fragment.appendChild(pictureElement);
   });
 
-  picturesContainer.innerHTML = '';
   picturesContainer.appendChild(fragment);
 };
 
-renderPictures(generatePhotoList);
+const photoList = generatePhotoList();
+renderPictures(photoList);
