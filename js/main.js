@@ -1,5 +1,26 @@
 import {nameList, messageList} from './data.js';
-import {generateCommentId, findRandomInteger, countComments, countPhotos} from "./util.js";
+import {generateCommentId, findRandomInteger, countComments, countPhotos} from './util.js';
+
+/**
+ * Генерируем комментарий
+ * @returns {Array<
+ *    id: number,
+ *    avatar: string,
+ *    message: string,
+ *    name: string
+ *  >}
+ */
+const generateComment = function () {
+  return {
+    id: generateCommentId(1, countComments),
+    avatar: `img/avatar-${findRandomInteger(1, 6)}.svg`,
+    name: nameList[findRandomInteger(0, nameList.length - 1)],
+    message: Array.from(
+      {length: findRandomInteger(1, 2)},
+      () => messageList[findRandomInteger(0, messageList.length - 1)]
+    ).join(' '),
+  };
+};
 
 /**
  * Функция для генерации массива фотографий
@@ -16,7 +37,7 @@ import {generateCommentId, findRandomInteger, countComments, countPhotos} from "
  *  }>
  *  }>}
  */
-const generatePhotoList = () => {
+const generatePhotoList = function () {
 
   const photoList = [];
   for (let i = 1; i <= countPhotos; i++) {
@@ -38,25 +59,6 @@ const generatePhotoList = () => {
   }
 
   return photoList;
-}
+};
 
-/**
- * Генерируем комментарий
- * @returns {Array<
- *    id: number,
- *    avatar: string,
- *    message: string,
- *    name: string
- *  >}
- */
-const generateComment = () => {
-  return {
-    id: generateCommentId(1, countComments),
-    avatar: `img/avatar-${findRandomInteger(1, 6)}.svg`,
-    name: nameList[findRandomInteger(0, nameList.length - 1)],
-    message: Array.from(
-      {length: findRandomInteger(1, 2)},
-      () => messageList[findRandomInteger(0, messageList.length - 1)]
-    ).join(' '),
-  };
-}
+export {generatePhotoList};

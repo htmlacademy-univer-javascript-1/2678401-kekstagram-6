@@ -4,7 +4,7 @@
  * @param {number} count Максимальная длина
  * @returns {boolean}
  */
-const isLine = (text, count) => text.length <= count
+const isLine = (text, count) => text.length <= count;
 
 /**
  * Проверяем на строку палиндром
@@ -23,7 +23,7 @@ function isPalindrome(text) {
 
 /**
  * Из строки находим цифры и выводим тип {number}
- * @param {number} text
+ * @param {string} text
  * @returns {number}
  */
 function extractNumbers(text) {
@@ -31,7 +31,7 @@ function extractNumbers(text) {
   const str = text.toString();
   let result = '';
   for (const char of str) {
-    let number = parseInt(char, 10);
+    const number = parseInt(char, 10);
     if (!Number.isNaN(number)) {
       result += number;
     }
@@ -61,4 +61,4 @@ const isMeetingWithinWorkDay = function (workStart, workEnd, meetingStart, meeti
     meetingStartMinutes >= workStartMinutes &&
     meetingEndMinutes <= workEndMinutes
   );
-}
+};
