@@ -1,4 +1,11 @@
 import {generatePhotoList} from './main.js';
+import {renderBigPicture} from './big-picture.js';
+
+const addPictureClickHandler = function (pictureElement, picture) {
+  pictureElement.addEventListener('click', () => {
+    renderBigPicture(picture);
+  });
+};
 
 const renderPictures = function (picturesData) {
 
@@ -24,6 +31,7 @@ const renderPictures = function (picturesData) {
     const commentsElement = pictureElement.querySelector('.picture__comments');
     commentsElement.textContent = picture.comments.length;
 
+    addPictureClickHandler(pictureElement, picture);
     fragment.appendChild(pictureElement);
   });
 

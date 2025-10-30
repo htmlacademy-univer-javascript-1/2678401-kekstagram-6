@@ -37,7 +37,7 @@ const generateComment = function () {
  *  }>
  *  }>}
  */
-const generatePhotoList = function () {
+export const generatePhotoList = function () {
 
   const photoList = [];
   for (let i = 1; i <= countPhotos; i++) {
@@ -60,5 +60,3 @@ const generatePhotoList = function () {
 
   return photoList;
 };
-
-export {generatePhotoList};
