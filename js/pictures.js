@@ -2,7 +2,8 @@ import {generatePhotoList} from './main.js';
 import {renderBigPicture} from './big-picture.js';
 
 const addPictureClickHandler = function (pictureElement, picture) {
-  pictureElement.addEventListener('click', () => {
+  pictureElement.addEventListener('click', (evt) => {
+    evt.preventDefault();
     renderBigPicture(picture);
   });
 };
